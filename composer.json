@@ -14,6 +14,12 @@
         "phpunit/phpunit": "^9.6"
     },
     "extra": {
+        "expose": [
+            "themes/simple/css",
+            "themes/simple/images",
+            "themes/simple/javascript",
+            "themes/simple/webfonts"
+        ],
         "project-files-installed": [
             ".htaccess",
             "app/.htaccess",
