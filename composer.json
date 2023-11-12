@@ -7,6 +7,7 @@
         "silverstripe/recipe-plugin": "~2.0.0@stable",
         "silverstripe/vendor-plugin": "~2.0.1@stable",
         "silverstripe/recipe-cms": "~5.1.0@stable",
+        "silverstripe-themes/simple": "~3.3.0@stable",
         "silverstripe/login-forms": "~5.1.0@stable"
     },
     "require-dev": {
