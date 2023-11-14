@@ -3,6 +3,7 @@
 namespace {
 
     use SilverStripe\CMS\Controllers\ContentController;
+    use SilverStripe\Control\HTTPRequest;
 
     class PageController extends ContentController
     {
@@ -21,13 +22,27 @@ namespace {
          *
          * @var array
          */
-        private static $allowed_actions = [];
+        private static $allowed_actions = [
+            'feedViewableData'
+        ];
 
+        private static $url_handlers = [
+            'fetchViewableData'=> 'feedViewableData'
+        ];
         protected function init()
         {
             parent::init();
             // You can include any CSS or JS required by your project here.
             // See: https://docs.silverstripe.org/en/developer_guides/templates/requirements/
+        }
+
+        public function feedViewableData(HTTPRequest $request)
+        {
+            $viewableData = [
+                'content' => $this->Content
+            ];
+
+            return json_encode($viewableData);
         }
     }
 }
