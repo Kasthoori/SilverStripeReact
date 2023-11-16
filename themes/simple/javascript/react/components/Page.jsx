@@ -2,31 +2,61 @@ import React, { useEffect, useState } from "react";
 
 const Page = (props) => {
 
-    const [ content, setContent] = useState('');
+    const initialState = {
+        Content: '<p></p>',
+        siteConfig_SocialLinks: []
+    }
+
+    const [ Content, setContent] = useState(initialState);
 
     useEffect(() => {
 
-        loadviewableData();
+       loadviewableData()
 
     }, []);
 
     async function loadviewableData(){
         const data = await props.fetchViewableData();
+        
         if(data){
             let parsedContent = '<p></p>';
+            let sociallink = '';
+            console.log('DATA', data)
             if(data.content){
-                parsedContent = data.content.replace(/\[image(.*)\]/, '<img $1 />');
-
+               parsedContent = data.content.replace(/\[image(.*)\]/, '<img $1 />');
             }
 
-            setContent(parsedContent)
+            setContent({
+                Content: parsedContent,
+                siteConfig_SocialLinks: data.SiteConfig_SocialLinks
+            })
+            
+            
         }
-        console.log('CONTENT', content)
     }
 
     return (
         <div>
-            <div dangerouslySetInnerHTML={{__html: content}}></div>
+            <div dangerouslySetInnerHTML={{__html: Content.Content}}></div>
+
+            {Content.siteConfig_SocialLinks.length > 0 ?
+                    <ul className="social_banner">
+                        {
+                            Content.siteConfig_SocialLinks.map((social) => { 
+                              return(  <li key={social.ID}>
+                                    <a href={social.Link}>{social.Type}</a>
+                                </li>
+                              )
+                         })
+                          
+
+                        }
+                        {console.log("RENDER", Content.siteConfig_SocialLinks)}
+                    </ul>
+                   :
+                   ''
+            }
+           
         </div>
     );
 }

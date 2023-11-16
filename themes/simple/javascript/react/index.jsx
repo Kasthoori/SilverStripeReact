@@ -10,6 +10,7 @@ async function fetchViewableData(){
             headers: {'Content-Type': 'application/json'}
         });
 
+
         const body = await response.text();
         const result = JSON.parse(body);
         console.log('RESULT', result);

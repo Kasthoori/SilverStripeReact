@@ -39,7 +39,8 @@ namespace {
         public function feedViewableData(HTTPRequest $request)
         {
             $viewableData = [
-                'content' => $this->Content
+                'content' => $this->Content,
+                'SiteConfig_SocialLinks' => $this->SiteConfig->SocialLinks()->toNestedArray() 
             ];
 
             return json_encode($viewableData);

@@ -65,9 +65,13 @@ function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" !=
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var Page = function Page(props) {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+  var initialState = {
+    Content: '<p></p>',
+    siteConfig_SocialLinks: []
+  };
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(initialState),
     _useState2 = _slicedToArray(_useState, 2),
-    content = _useState2[0],
+    Content = _useState2[0],
     setContent = _useState2[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     loadviewableData();
@@ -77,7 +81,7 @@ var Page = function Page(props) {
   }
   function _loadviewableData() {
     _loadviewableData = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-      var data, parsedContent;
+      var data, parsedContent, sociallink;
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) switch (_context.prev = _context.next) {
           case 0:
@@ -87,13 +91,17 @@ var Page = function Page(props) {
             data = _context.sent;
             if (data) {
               parsedContent = '<p></p>';
+              sociallink = '';
+              console.log('DATA', data);
               if (data.content) {
                 parsedContent = data.content.replace(/\[image(.*)\]/, '<img $1 />');
               }
-              setContent(parsedContent);
+              setContent({
+                Content: parsedContent,
+                siteConfig_SocialLinks: data.SiteConfig_SocialLinks
+              });
             }
-            console.log('CONTENT', content);
-          case 5:
+          case 4:
           case "end":
             return _context.stop();
         }
@@ -103,9 +111,17 @@ var Page = function Page(props) {
   }
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     dangerouslySetInnerHTML: {
-      __html: content
+      __html: Content.Content
     }
-  }));
+  }), Content.siteConfig_SocialLinks.length > 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
+    className: "social_banner"
+  }, Content.siteConfig_SocialLinks.map(function (social) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
+      key: social.ID
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+      href: social.Link
+    }, social.Type));
+  }), console.log("RENDER", Content.siteConfig_SocialLinks)) : '');
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Page);
 
