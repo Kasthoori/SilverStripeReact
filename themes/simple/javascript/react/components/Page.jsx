@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { SocialIcon } from "react-social-icons";
 
 const Page = (props) => {
 
@@ -44,14 +45,15 @@ const Page = (props) => {
                         {
                             Content.siteConfig_SocialLinks.map((social) => { 
                               return(  <li key={social.ID}>
-                                    <a href={social.Link}>{social.Type}</a>
+                                    {/* <a href={social.Link}> */}
+                                        <SocialIcon url={social.Link} style={{width: 20, height: 20}} />
+                                    {/* </a> */}
                                 </li>
                               )
                          })
                           
 
                         }
-                        {console.log("RENDER", Content.siteConfig_SocialLinks)}
                     </ul>
                    :
                    ''
