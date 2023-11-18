@@ -5,4 +5,4 @@
 /public/_resources/
 /.graphql-generated/
 /public/_graphql/
-/node_module/
+/node_modules/
