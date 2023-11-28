@@ -10,6 +10,7 @@ module.exports = {
         path.resolve(__dirname, 'themes/simple/scss/custom.scss')
     ],
     output: {
+        publicPath: '/',
         filename: 'javascript/bundle.js',
         path: path.resolve(__dirname, 'themes/simple')
     },

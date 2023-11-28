@@ -22,7 +22,7 @@ const Page = (props) => {
         if(data){
             let parsedContent = '<p></p>';
             let sociallink = '';
-            console.log('DATA', data)
+            console.log('DATA', Content)
             if(data.content){
                parsedContent = data.content.replace(/\[image(.*)\]/, '<img $1 />');
             }
